@@ -4,16 +4,10 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { SharedModule } from '../shared/shared.module';
 
 @Module({
-  imports: [
-    UserModule,
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '1d' },
-      global: true,
-    }),
-  ],
+  imports: [UserModule, SharedModule],
   providers: [AuthService],
   controllers: [AuthController],
   exports: [AuthService],
